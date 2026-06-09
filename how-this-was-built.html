@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    /* Set theme before paint to avoid a flash. */
+    (function(){try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'espresso':'latte');if(t==='espresso')document.documentElement.setAttribute('data-theme','espresso');}catch(e){}})();
+  </script>
+  <title>How this site was built — Jonas Bruns</title>
+  <meta name="description" content="A plain-English, step-by-step recipe for building a personal website with an AI coding assistant — no framework, no bootcamp, prompts included." />
+  <link rel="canonical" href="https://jonasbruns.com/how-this-was-built.html" />
+  <meta name="theme-color" content="#fbfbfa" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Jonas Bruns" />
+  <meta property="og:title" content="How I built this site by just describing what I wanted" />
+  <meta property="og:description" content="A plain-English recipe for building your own website with an AI pair — no framework, no bootcamp, prompts included." />
+  <meta property="og:url" content="https://jonasbruns.com/how-this-was-built.html" />
+  <meta property="og:image" content="https://jonasbruns.com/assets/og-card.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="masthead">
+    <a class="wordmark" href="/">Jonas&nbsp;Bruns</a>
+    <div class="mast-right">
+      <nav aria-label="Primary"><a href="/">← Back to home</a></nav>
+      <button class="themetoggle" type="button" aria-label="Switch colour theme">
+        <span class="tt-icon" aria-hidden="true">☕</span><span class="tt-label">Espresso</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===================== INTRO ===================== -->
+    <section class="sec">
+      <div class="sec-head"><span class="sec-no">Colophon</span><h2>How this site was built</h2></div>
+      <div class="sec-body">
+        <p class="guide-lede">People keep asking who built this site. The honest answer:
+          <strong>I described what I wanted, in plain English, to an AI coding assistant —
+          and corrected it until it looked right.</strong> No bootcamp, no $5k freelancer,
+          no framework. An afternoon and a lot of opinions.</p>
+        <p class="guide-lede">Here's the entire recipe — the tools, and the actual kind of
+          prompts I used — so you can build your own. The whole thing is
+          <a href="https://github.com/JonasBruns/jonasbruns-site">open on GitHub</a>;
+          feel free to steal it.</p>
+      </div>
+    </section>
+
+    <!-- ===================== INGREDIENTS ===================== -->
+    <section class="sec">
+      <div class="sec-head"><span class="sec-no">01</span><h2>The ingredients</h2></div>
+      <div class="sec-body">
+        <p class="prose">Four things, all of them cheap or free:</p>
+        <ul class="toolkit">
+          <li>
+            <b>An AI coding assistant.</b>
+            <span>The pair that actually reads and writes the files for you. I used
+              <a href="https://claude.com/claude-code">Claude Code</a> — you tell it what you want,
+              it edits the page.</span>
+          </li>
+          <li>
+            <b>A GitHub repo.</b>
+            <span>A home for the files that remembers every change, so nothing is ever
+              truly broken — you can always undo.</span>
+          </li>
+          <li>
+            <b>Plain HTML &amp; CSS — no framework.</b>
+            <span>The raw building blocks every web page is made of. Two text files. That's the
+              whole site you're reading.</span>
+          </li>
+          <li>
+            <b>A small server + Caddy.</b>
+            <span>A ~€4/month box (Hetzner) running Caddy, which serves the page and sets up
+              HTTPS automatically. Skip this and use any free host if you prefer.</span>
+          </li>
+        </ul>
+        <p class="prose" style="margin-top:1.6rem">You do <em>not</em> need to know how to code.
+          You need to know what you want — and be willing to say "no, not like that."</p>
+      </div>
+    </section>
+
+    <!-- ===================== STEPS ===================== -->
+    <section class="sec">
+      <div class="sec-head"><span class="sec-no">02</span><h2>The recipe</h2></div>
+      <div class="sec-body">
+        <ol class="steps">
+          <li class="step">
+            <h3>Describe the vibe, not the code</h3>
+            <p>Start with a feeling and a structure. Don't worry about how — that's the
+              assistant's job. Mine looked roughly like this:</p>
+            <div class="prompt">
+              <p>Build me a one-page personal website. Warm, minimal, lots of whitespace,
+                one accent colour, a typographic feel — deliberately <em>not</em>
+                generic-AI-looking.</p>
+              <p>Sections: a hero with my one-liner, About, what I work on, writing, talks,
+                and contact. Plain HTML and CSS, no framework. Make it responsive and support
+                a dark mode.</p>
+            </div>
+          </li>
+
+          <li class="step">
+            <h3>Let it build the first draft</h3>
+            <p>Then just let it run. In seconds you have a real page you can open in your
+              browser.</p>
+            <div class="prompt">
+              <p>Go ahead and create the files. Then tell me how to preview it locally.</p>
+            </div>
+            <p>It won't be perfect. That is entirely the point — you now have something to
+              react to, which is much easier than starting from a blank page.</p>
+          </li>
+
+          <li class="step">
+            <h3>Point and correct — this is 80% of it</h3>
+            <p>Now you art-direct. Look at the page, find the thing that bugs you, and say so in
+              one specific sentence. Repeat. These were real nudges:</p>
+            <div class="prompt">
+              <p>The headline is too big on mobile and the photo looks squished — fix both.</p>
+            </div>
+            <div class="prompt">
+              <p>Make the accent a warm terracotta, not blue. And use a single typeface
+                throughout.</p>
+            </div>
+            <div class="prompt">
+              <p>Add a little coffee cup in the corner that fills up as you scroll. 🙂</p>
+            </div>
+            <p>You're not coding — you're being picky out loud. (Yes, the cup down there is real.)</p>
+          </li>
+
+          <li class="step">
+            <h3>Pour in your real content</h3>
+            <p>Hand over the facts in your own words and let it handle the markup. Paste, don't
+              fuss about formatting.</p>
+            <div class="prompt">
+              <p>Replace the placeholder text with this: [paste your bio, your links, your
+                projects]. Here are my photos — add them to the About gallery.</p>
+            </div>
+            <p>Keep the words yours. Let the assistant worry about tags, alt text and accessibility.</p>
+          </li>
+
+          <li class="step">
+            <h3>Put it on the internet</h3>
+            <p>Point your domain at a server, push your files, and let Caddy fetch a free HTTPS
+              certificate. You can ask the assistant to write that config for you too:</p>
+            <div class="prompt">
+              <p>Write the web-server config to serve this folder at mydomain.com with
+                automatic HTTPS, and walk me through deploying it.</p>
+            </div>
+            <p>No domain or server yet? Any free static host works just as well to start.</p>
+          </li>
+        </ol>
+
+        <div class="guide-callout">
+          <p>That's the whole trick: <strong>describe what you want, be honest about what's
+            wrong, repeat.</strong> If you can picture it and you're a little stubborn about the
+          result, you can have a site like this by tonight. The source is
+          <a href="https://github.com/JonasBruns/jonasbruns-site">right here on GitHub</a> — go
+          make it yours. ☕</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="scrollcup" aria-hidden="true">
+    <svg viewBox="0 0 36 36">
+      <defs><clipPath id="cupclip"><path d="M8 11 H24 V19 a8 8 0 0 1 -16 0 Z"/></clipPath></defs>
+      <rect class="brew" x="8" y="10" width="16" height="18" clip-path="url(#cupclip)"/>
+      <path class="cup-line" d="M8 11 H24 V19 a8 8 0 0 1 -16 0 Z"/>
+      <path class="cup-line" d="M24 13 h3.5 a3 3 0 0 1 0 6 H24"/>
+    </svg>
+  </div>
+
+  <footer class="site-footer">
+    <span>© <span id="year">2026</span> Jonas Bruns · <a href="/">Home</a> · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
+    <span>Built with more enthusiasm than necessary.</span>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Open external links in a new tab; leave in-page anchors and mailto alone.
+    document.querySelectorAll('a[href^="http"]').forEach(function (a) {
+      if (a.hostname !== location.hostname) {
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+      }
+    });
+
+    // Latte / Espresso theme toggle.
+    (function () {
+      var root = document.documentElement, btn = document.querySelector('.themetoggle');
+      if (!btn) return;
+      var lbl = btn.querySelector('.tt-label');
+      function sync() { lbl.textContent = root.getAttribute('data-theme') === 'espresso' ? 'Latte' : 'Espresso'; }
+      sync();
+      btn.addEventListener('click', function () {
+        if (root.getAttribute('data-theme') === 'espresso') { root.removeAttribute('data-theme'); try { localStorage.setItem('theme', 'latte'); } catch (e) {} }
+        else { root.setAttribute('data-theme', 'espresso'); try { localStorage.setItem('theme', 'espresso'); } catch (e) {} }
+        sync();
+      });
+    })();
+
+    // Coffee scroll-progress cup.
+    (function () {
+      var cup = document.querySelector('.scrollcup'), d = document.documentElement;
+      if (!cup) return;
+      function upd() { var p = d.scrollTop / ((d.scrollHeight - d.clientHeight) || 1); cup.style.setProperty('--p', Math.max(0, Math.min(1, p)).toFixed(3)); }
+      addEventListener('scroll', upd, { passive: true });
+      addEventListener('resize', upd);
+      upd();
+    })();
+  </script>
+</body>
+</html>

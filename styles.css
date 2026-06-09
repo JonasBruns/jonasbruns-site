@@ -470,6 +470,87 @@ a { color: inherit; }
   .themetoggle { padding: .35rem .6rem; }
 }
 
+/* ===========================================================================
+   "How this site was built" — the guide page
+=========================================================================== */
+
+.guide-lede {
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 42rem;
+  margin: 0 0 1rem;
+}
+.guide-lede strong { color: var(--ink); font-weight: 500; }
+
+/* the toolkit list (step 01) */
+.toolkit { list-style: none; margin: 1.4rem 0 0; padding: 0; display: grid; gap: 1.1rem; }
+.toolkit li {
+  display: grid; gap: .15rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--line);
+}
+.toolkit b { font-weight: 500; color: var(--ink); }
+.toolkit span { color: var(--muted); font-size: .97rem; }
+
+/* numbered steps */
+.steps { list-style: none; counter-reset: step; margin: 0; padding: 0; }
+.step { padding: 1.9rem 0; border-top: 1px solid var(--line); }
+.step:first-child { padding-top: 0; border-top: 0; }
+.step h3 {
+  display: flex; gap: .7rem; align-items: baseline;
+  font-weight: 500; font-size: 1.2rem; letter-spacing: -.01em;
+  margin: 0 0 .6rem;
+}
+.step h3::before {
+  counter-increment: step;
+  content: counter(step, decimal-leading-zero);
+  color: var(--faint); font-size: .8rem; font-variant-numeric: tabular-nums;
+}
+.step p { margin: 0 0 .9rem; color: var(--muted); }
+.step p:last-child { margin-bottom: 0; }
+.step p a {
+  color: var(--ink); text-decoration: underline;
+  text-decoration-color: var(--faint); text-underline-offset: 3px;
+}
+.step p a:hover { text-decoration-color: var(--ink); }
+
+/* a mock "you → AI" prompt box */
+.prompt {
+  margin: .9rem 0;
+  padding: .9rem 1.05rem;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+}
+.prompt::before {
+  content: "You → AI";
+  display: block;
+  font-size: .6rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--faint); margin-bottom: .45rem;
+}
+.prompt p {
+  margin: 0; color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .9rem; line-height: 1.5;
+}
+.prompt p + p { margin-top: .65rem; }
+
+/* closing callout */
+.guide-callout {
+  margin: 2.6rem 0 0;
+  padding: 1.4rem 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: .6rem;
+  background: var(--bg-2);
+}
+.guide-callout p { margin: 0; color: var(--ink); }
+.guide-callout a {
+  color: var(--ink); text-decoration: underline;
+  text-decoration-color: var(--faint); text-underline-offset: 3px;
+}
+.guide-callout a:hover { text-decoration-color: var(--ink); }
+
 /* desktop hero portrait — declared LAST so it overrides the mobile avatar rules */
 @media (min-width: 56rem) {
   .hero-portrait { order: 0; margin: 0; justify-self: end; }
