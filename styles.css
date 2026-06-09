@@ -219,6 +219,7 @@ a { color: inherit; }
   letter-spacing: .02em;
   color: var(--muted);
 }
+.cap-mobile { display: none; }   /* shown only on phones (see ≤40rem block) */
 
 /* ---- work list ------------------------------------------------------------ */
 
@@ -366,6 +367,9 @@ a { color: inherit; }
   }
   .gallery-track::-webkit-scrollbar { display: none; }
   .gallery-track img { height: 220px; flex: none; scroll-snap-align: start; }
+  .gallery-track img.m-hide { display: none; }   /* curated 3 on mobile */
+  .cap-full { display: none; }
+  .cap-mobile { display: block; }
 }
 
 @media (min-width: 56rem) {
