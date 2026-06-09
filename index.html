@@ -6,11 +6,12 @@
   <title>Jonas Bruns</title>
   <meta name="description" content="Jonas Bruns — CEO of mymun, recovering mechanical engineer, INSEAD MBA. I build software and rooms that get people who disagree to actually talk." />
 
-  <!-- Open Graph (for link previews). TODO: add assets/og-image.png (1200×630). -->
+  <!-- Open Graph (for link previews). -->
   <meta property="og:title" content="Jonas Bruns" />
   <meta property="og:description" content="I build software and rooms that get people who disagree to actually talk." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://jonasbruns.com" />
+  <meta property="og:image" content="https://jonasbruns.com/assets/niagara-2015.jpg" />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
@@ -23,6 +24,7 @@
     <nav aria-label="Primary">
       <a href="#about">About</a>
       <a href="#work">Work</a>
+      <a href="#writing">Writing</a>
       <a href="#media">Talks</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -31,18 +33,25 @@
   <main id="main">
     <!-- ===================== HERO ===================== -->
     <section id="top" class="hero">
-      <p class="eyebrow">Hi, I'm</p>
-      <h1>Jonas Bruns</h1>
-      <p class="lede">
-        I build software — and rooms — that get people who disagree to actually talk.
-        It started with a Model UN platform I coded in a garage; today that's
-        <a href="https://mymun.com">mymun</a>, used by 370,000+ students across 140 countries.
-        On the side: strategy consulting, an INSEAD MBA, and automating my own life for fun.
-      </p>
-      <div class="hero-actions">
-        <a class="btn" href="#contact">Say hi</a>
-        <a class="btn btn-ghost" href="#work">What I'm up to</a>
+      <div class="hero-text">
+        <p class="eyebrow">Hi, I'm</p>
+        <h1>Jonas Bruns</h1>
+        <p class="lede">
+          I build software — and rooms — that get people who disagree to actually talk.
+          It started with a Model UN platform I coded in a garage; today that's
+          <a href="https://mymun.com">mymun</a>, used by 370,000+ students across 140 countries.
+          On the side: strategy consulting, an INSEAD MBA, and automating my own life for fun.
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="#contact">Say hi</a>
+          <a class="btn btn-ghost" href="#work">What I'm up to</a>
+        </div>
       </div>
+      <figure class="hero-photo">
+        <img src="assets/niagara-2015.jpg" width="960" height="720"
+             alt="Jonas with a backpacking pack at Niagara Falls, 2015" />
+        <figcaption>First crossing into the US — Niagara Falls, 2015.</figcaption>
+      </figure>
     </section>
 
     <!-- ===================== ABOUT ===================== -->
@@ -62,6 +71,12 @@
         and 11,000+ events across 140 countries. My leadership has fostered a sustainable business
         model, ensuring long-term value for the MUN community.
       </p>
+      <figure class="photo-row">
+        <img loading="lazy" src="assets/panel.jpg" alt="Jonas speaking on a panel" />
+        <img loading="lazy" src="assets/gac-dinner.jpg" alt="Conference dinner toast at the German American Conference" />
+        <img loading="lazy" src="assets/hongkong-market.jpg" alt="A street market in Hong Kong" />
+        <figcaption>On a panel · the German American Conference · a market run in Hong Kong.</figcaption>
+      </figure>
     </section>
 
     <!-- ===================== WORK & PROJECTS ===================== -->
@@ -85,7 +100,6 @@
             Harvard Kennedy School — a yearly gathering of students, thinkers and leaders from
             both sides of the Atlantic, figuring out where the relationship goes next.
           </p>
-          <!-- TODO: confirm the official link -->
           <a class="card-link" href="https://www.germanamericanconference.org">germanamericanconference.org →</a>
         </li>
 
@@ -96,8 +110,7 @@
             startup prizes at KIT, a Student Innovation Lab, and Model UN programs bringing
             political education into German classrooms.
           </p>
-          <!-- TODO: add the foundation's link if there is one -->
-          <span class="card-link muted">TODO: add link</span>
+          <a class="card-link" href="https://aurelsteinert-stiftung.de/">aurelsteinert-stiftung.de →</a>
         </li>
 
         <li class="card">
@@ -122,12 +135,21 @@
           </a>
           <span class="article-note">How a cancelled conference in 2020 turned into the software that became mymun.</span>
         </li>
-        <!-- TODO: paste URLs to add these standout posts as their own entries:
-             • "The day that reinstalled my optimism in democracy" (Model Bundestag)
-             • "America, we have to talk" (German American Conference)
-             • The Vis Moot "current" / contract-ambiguity lesson
-             • "Consulting usually means PowerPoint. We made it React." -->
+        <li>
+          <a href="https://mymun.com/blog/the-day-we-returned-to-school-training-teachers-to-kick-start-mun-clubs-and-classes">
+            The day we returned to school
+          </a>
+          <span class="article-note">Training teachers to kick-start Model UN clubs and classes in German schools.</span>
+        </li>
       </ul>
+
+      <h3 class="subhead">Notes</h3>
+      <ul class="notes">
+        <li><strong>America, we have to talk.</strong> On the transatlantic relationship, ten years after my first crossing at Niagara.</li>
+        <li><strong>The day that reinstalled my optimism in democracy.</strong> 100 students, 13 political foundations, one Model Bundestag.</li>
+        <li><strong>On the word “current.”</strong> What a commercial-arbitration moot taught me about ambiguity — in contracts and elsewhere.</li>
+      </ul>
+      <p class="more-link"><a href="https://www.linkedin.com/in/brunsj/recent-activity/all/">More on LinkedIn →</a></p>
     </section>
 
     <!-- ===================== TALKS & MEDIA ===================== -->
@@ -168,12 +190,11 @@
         </li>
 
         <li class="media-card media-card--text">
-          <!-- TODO: paste the #tothemun podcast link -->
-          <a href="https://mymun.com">
+          <a href="https://open.spotify.com/show/5dIA6ppntsVoRZxWYkTexS">
             <span class="media-thumb-text">#tothemun</span>
             <span class="media-tag">Podcast</span>
             <span class="media-title">#tothemun</span>
-            <span class="media-src">mymun's podcast · TODO: link</span>
+            <span class="media-src">mymun's podcast · Spotify</span>
           </a>
         </li>
       </ul>
