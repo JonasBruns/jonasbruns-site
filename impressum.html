@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum — Jonas Bruns</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="masthead">
+    <a class="wordmark" href="/">Jonas&nbsp;Bruns</a>
+    <nav aria-label="Primary"><a href="/">← Back</a></nav>
+  </header>
+
+  <main id="main">
+    <section class="sec">
+      <div class="sec-head"><span class="sec-no">§</span><h2>Impressum</h2></div>
+      <div class="sec-body">
+        <p class="subhead">Angaben gemäß § 5 DDG</p>
+        <p class="prose">
+          Jonas Bruns<br />
+          <!-- TODO: postal address (must be a reachable address, not a P.O. box) -->
+          [Straße &amp; Hausnummer]<br />
+          [PLZ&nbsp;Ort]<br />
+          Deutschland
+        </p>
+
+        <p class="subhead">Kontakt</p>
+        <p class="prose">
+          E-Mail: <a href="mailto:jonas.bruns@mymun.com">jonas.bruns@mymun.com</a>
+        </p>
+
+        <p class="subhead">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</p>
+        <p class="prose">Jonas Bruns (Anschrift wie oben)</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© <span id="year">2026</span> Jonas Bruns</span>
+    <span><a href="/">jonasbruns.com</a></span>
+  </footer>
+
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
