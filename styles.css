@@ -465,3 +465,13 @@ a { color: inherit; }
   .masthead nav { gap: .8rem .95rem; }
   .themetoggle { padding: .35rem .6rem; }
 }
+
+/* desktop hero portrait — declared LAST so it overrides the mobile avatar rules */
+@media (min-width: 56rem) {
+  .hero-portrait { order: 0; margin: 0; justify-self: end; }
+  .hero-portrait img {
+    width: 100%; height: auto; max-width: 330px;
+    border-radius: .5rem; aspect-ratio: 4 / 5;
+    object-fit: cover; object-position: center;
+  }
+}
