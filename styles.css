@@ -1,0 +1,186 @@
+/* ---------------------------------------------------------------------------
+   jonasbruns.com — single stylesheet
+   Warm, minimal, typographic. Light + dark via prefers-color-scheme.
+--------------------------------------------------------------------------- */
+
+:root {
+  --bg:        #fbfaf8;
+  --bg-soft:   #f3f0ea;
+  --text:      #1c1b19;
+  --muted:     #6c675f;
+  --accent:    #b3541e;   /* terracotta */
+  --accent-ink:#8f3f12;
+  --border:    #e6e1d8;
+  --max:       46rem;
+  --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --sans:  ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #14120f;
+    --bg-soft:   #1d1a16;
+    --text:      #ece8e1;
+    --muted:     #a59e92;
+    --accent:    #e08a4f;
+    --accent-ink:#eaa471;
+    --border:    #2c2823;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+}
+.skip-link:focus {
+  left: 1rem; top: 1rem;
+  background: var(--accent); color: #fff;
+  padding: .5rem .9rem; border-radius: .4rem; z-index: 10;
+}
+
+/* ---- layout primitives -------------------------------------------------- */
+
+.hero, .section, .site-nav, .site-footer {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.section { padding-block: 3.5rem; border-top: 1px solid var(--border); }
+
+/* ---- nav ---------------------------------------------------------------- */
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1.25rem;
+}
+.monogram {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: .04em;
+  text-decoration: none;
+  color: var(--text);
+  border: 1.5px solid var(--text);
+  width: 2.4rem; height: 2.4rem;
+  display: grid; place-items: center;
+  border-radius: 50%;
+}
+.site-nav nav { display: flex; gap: 1.4rem; }
+.site-nav nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .95rem;
+}
+.site-nav nav a:hover { color: var(--accent); }
+
+/* ---- hero --------------------------------------------------------------- */
+
+.hero { padding-block: 4.5rem 3.5rem; }
+.eyebrow {
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: .8rem;
+  margin: 0 0 .5rem;
+}
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  margin: 0 0 1rem;
+}
+.lede {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 34rem;
+  margin: 0 0 2rem;
+}
+.lede a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+.hero-actions { display: flex; gap: .8rem; flex-wrap: wrap; }
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .95rem;
+  padding: .7rem 1.3rem;
+  border-radius: .5rem;
+  border: 1.5px solid var(--accent);
+  transition: transform .12s ease, opacity .12s ease;
+}
+.btn:hover { transform: translateY(-1px); opacity: .92; }
+.btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---- headings & text ---------------------------------------------------- */
+
+h2 {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  letter-spacing: -.01em;
+  margin: 0 0 1.2rem;
+}
+h3 { font-size: 1.1rem; margin: 0 0 .4rem; }
+p { margin: 0 0 1.1rem; }
+
+a { color: var(--accent-ink); }
+
+/* ---- project cards ------------------------------------------------------ */
+
+.cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: .8rem;
+  padding: 1.3rem 1.4rem;
+}
+.card p { color: var(--muted); margin-bottom: .6rem; }
+.card-link { font-weight: 600; font-size: .92rem; text-decoration: none; }
+.card-link:not(.muted):hover { text-decoration: underline; }
+.muted { color: var(--muted); font-weight: 500; }
+
+/* ---- links list --------------------------------------------------------- */
+
+.links { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.links a {
+  text-decoration: none;
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+.links a:hover { text-decoration: underline; }
+
+/* ---- footer ------------------------------------------------------------- */
+
+.site-footer {
+  padding-block: 2.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+/* ---- responsive niceties ------------------------------------------------ */
+
+@media (min-width: 36rem) {
+  .cards { grid-template-columns: 1fr 1fr; }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jonas Bruns</title>
+  <meta name="description" content="Jonas Bruns — personal site." /><!-- TODO: tighten this one-liner -->
+
+  <!-- Open Graph (for link previews). TODO: add assets/og-image.png (1200×630). -->
+  <meta property="og:title" content="Jonas Bruns" />
+  <meta property="og:description" content="Personal site of Jonas Bruns." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jonasbruns.com" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <a class="monogram" href="#top" aria-label="Jonas Bruns — home">JB</a>
+    <nav aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ===================== HERO ===================== -->
+    <section id="top" class="hero">
+      <p class="eyebrow">Hi, I'm</p>
+      <h1>Jonas Bruns</h1>
+      <!-- TODO: your one-line headline — what you do / what you're about. -->
+      <p class="lede">
+        I build practical software and work on
+        <a href="https://mymun.com">mymun</a>. Currently an MBA candidate at INSEAD.
+      </p>
+      <div class="hero-actions">
+        <a class="btn" href="#contact">Get in touch</a>
+        <a class="btn btn-ghost" href="#work">See what I do</a>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" class="section">
+      <h2>About</h2>
+      <!-- TODO: rewrite in your own voice — this is placeholder copy. -->
+      <p>
+        I'm interested in the space where product, operations, and a bit of code meet —
+        taking fuzzy problems and turning them into tools that quietly do the work.
+        Most of my time goes to mymun, where we help organisers run Model UN conferences;
+        on the side I tinker with small automations that save me time.
+      </p>
+      <p>
+        I'm based in Europe and currently studying at INSEAD. When I'm not at a keyboard,
+        I'm probably <!-- TODO: a personal detail or two -->travelling or reading.
+      </p>
+    </section>
+
+    <!-- ===================== WORK & PROJECTS ===================== -->
+    <section id="work" class="section">
+      <h2>Work &amp; projects</h2>
+      <ul class="cards">
+        <li class="card">
+          <h3>mymun</h3>
+          <p>
+            <!-- TODO: confirm your role / one-line description -->
+            Helping Model UN organisers run their conferences — the day job.
+          </p>
+          <a class="card-link" href="https://mymun.com">mymun.com →</a>
+        </li>
+
+        <li class="card">
+          <h3>WhatsApp Triage Assistant</h3>
+          <p>
+            <!-- TODO: keep, edit, or delete — it's a personal/self-hosted tool. -->
+            A self-hosted assistant that reads my WhatsApp, drafts replies, and adds
+            events to my calendar. Built with a Go bridge, a FastAPI backend, and Claude.
+          </p>
+          <span class="card-link muted">Private project</span>
+        </li>
+
+        <li class="card">
+          <h3>Something else</h3>
+          <p><!-- TODO: another project, or remove this card -->A placeholder for the next thing.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===================== LINKS & CONTACT ===================== -->
+    <section id="contact" class="section">
+      <h2>Get in touch</h2>
+      <p class="lede">
+        The fastest way to reach me is email.
+      </p>
+      <ul class="links">
+        <li><a href="mailto:jonas.bruns@mymun.com">jonas.bruns@mymun.com</a></li>
+        <!-- TODO: confirm/replace these profile URLs -->
+        <li><a href="https://www.linkedin.com/in/jonasbruns/" rel="me">LinkedIn</a></li>
+        <li><a href="https://github.com/JonasBruns" rel="me">GitHub</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year">2026</span> Jonas Bruns</p>
+  </footer>
+
+  <script>
+    // Only JS on the page: keep the footer year current.
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
