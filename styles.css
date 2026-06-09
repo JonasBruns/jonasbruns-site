@@ -417,3 +417,12 @@ a { color: inherit; }
 @media (max-width: 30rem) { .scrollcup { width: 32px; height: 32px; right: 12px; bottom: 12px; } }
 
 @media (prefers-reduced-motion: reduce) { .now-dot { animation: none; } .scrollcup .brew { transition: none; } }
+
+/* tidy the masthead on small screens: wordmark on top, nav + toggle on their own row */
+@media (max-width: 38rem) {
+  .masthead { flex-wrap: wrap; row-gap: .8rem; }
+  .mast-right { width: 100%; justify-content: space-between; gap: .8rem; }
+  .masthead nav { gap: .8rem .95rem; }
+  .themetoggle .tt-label { display: none; }
+  .themetoggle { padding: .35rem .55rem; }
+}
