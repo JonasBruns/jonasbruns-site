@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    /* Set theme before paint to avoid a flash. */
+    (function(){try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'espresso':'latte');if(t==='espresso')document.documentElement.setAttribute('data-theme','espresso');}catch(e){}})();
+  </script>
   <title>Jonas Bruns — CEO of mymun &amp; Strategy&amp; consultant</title>
   <meta name="description" content="Jonas Bruns — CEO of mymun, Senior Associate at Strategy&, and INSEAD MBA. I build software and rooms that get people who disagree to actually talk." />
   <link rel="canonical" href="https://jonasbruns.com/" />
@@ -33,33 +37,45 @@
 
   <header class="masthead">
     <a class="wordmark" href="#top">Jonas&nbsp;Bruns</a>
-    <nav aria-label="Primary">
-      <a href="#about">About</a>
-      <a href="#work">Work</a>
-      <a href="#writing">Writing</a>
-      <a href="#media">Talks</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="mast-right">
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#writing">Writing</a>
+        <a href="#media">Talks</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="themetoggle" type="button" aria-label="Switch colour theme">
+        <span class="tt-icon" aria-hidden="true">☕</span><span class="tt-label">Espresso</span>
+      </button>
+    </div>
   </header>
 
   <main id="main">
     <!-- ===================== HERO ===================== -->
     <section id="top" class="hero">
-      <p class="kicker rise" style="--d:0">Senior Associate, Strategy&amp; · CEO, mymun · INSEAD MBA</p>
-      <h1 class="rise" style="--d:1">
-        I build software — <span class="amp">and</span> rooms —
-        that get people who disagree to actually talk.
-      </h1>
-      <p class="lede rise" style="--d:2">
-        I'm a Senior Associate at <a href="https://www.strategyand.pwc.com">Strategy&amp;</a>
-        and the founder &amp; CEO of <a href="https://mymun.com">mymun</a> — the Model UN platform
-        I started coding in a garage, now used by 400,000+ students across 140 countries.
-        Currently an MBA candidate at INSEAD.
-      </p>
-      <div class="hero-actions rise" style="--d:3">
-        <a class="btn" href="#contact">Say hello</a>
-        <a class="btn-text" href="#work">See what I do →</a>
+      <div class="hero-text">
+        <p class="kicker rise" style="--d:0">Senior Associate, Strategy&amp; · CEO, mymun · INSEAD MBA</p>
+        <h1 class="rise" style="--d:1">
+          I build software — <span class="amp">and</span> rooms —
+          that get people who disagree to actually talk.
+        </h1>
+        <p class="lede rise" style="--d:2">
+          I'm a Senior Associate at <a href="https://www.strategyand.pwc.com">Strategy&amp;</a>
+          and the founder &amp; CEO of <a href="https://mymun.com">mymun</a> — the Model UN platform
+          I started coding in a garage, now used by 400,000+ students across 140 countries.
+          Currently an MBA candidate at INSEAD.
+        </p>
+        <!-- TODO: keep this "Now" line fresh -->
+        <p class="now rise" style="--d:3"><span class="now-dot"></span><span class="now-label">Now</span>&nbsp;In Singapore for my INSEAD MBA — and perpetually over-caffeinated.</p>
+        <div class="hero-actions rise" style="--d:4">
+          <a class="btn" href="#contact">Say hello</a>
+          <a class="btn-text" href="#work">See what I do →</a>
+        </div>
       </div>
+      <figure class="hero-portrait rise" style="--d:2">
+        <img src="assets/portrait.jpg" width="507" height="760" alt="Portrait of Jonas Bruns" />
+      </figure>
     </section>
 
     <!-- ===================== AFFILIATIONS ===================== -->
@@ -90,11 +106,13 @@
           countries — built on a sustainable model so it can serve the community for the long run.
         </p>
         <figure class="gallery">
-          <img loading="lazy" src="assets/panel.jpg" alt="Jonas speaking on a panel" />
-          <img loading="lazy" src="assets/gac-dinner.jpg" alt="Conference dinner toast at the German American Conference" />
-          <img loading="lazy" src="assets/niagara-2015.jpg" alt="Jonas backpacking at Niagara Falls" />
-          <img loading="lazy" src="assets/hongkong-market.jpg" alt="A street market in Hong Kong" />
-          <figcaption>On a panel · the German American Conference · Niagara, ’15 · a market run in Hong Kong</figcaption>
+          <img loading="lazy" src="assets/gallery/un-geneva.jpg" alt="Jonas at the UN in Geneva" />
+          <img loading="lazy" src="assets/gac-dinner.jpg" alt="Dinner at the German American Conference" />
+          <img loading="lazy" src="assets/gallery/hiking.jpg" alt="Jonas hiking above the clouds" />
+          <img loading="lazy" src="assets/gallery/insead.jpg" alt="Jonas at INSEAD" />
+          <img loading="lazy" src="assets/gallery/pwc.jpg" alt="Jonas next to a PwC ad" />
+          <img loading="lazy" src="assets/gallery/rue-jonas.jpg" alt="Rue Jonas street sign in Paris" />
+          <figcaption>The UN in Geneva · the German American Conference · above the clouds · INSEAD · &ldquo;we build for what&rsquo;s next&rdquo; · Rue Jonas, Paris</figcaption>
         </figure>
       </div>
     </section>
@@ -141,6 +159,7 @@
     <section id="writing" class="sec">
       <div class="sec-head"><span class="sec-no">03</span><h2>Writing</h2></div>
       <div class="sec-body">
+        <figure class="sec-photo"><img loading="lazy" src="assets/writing.jpg" alt="Jonas writing in a notebook in a Paris park" /></figure>
         <ul class="articles">
           <li>
             <a href="https://www.linkedin.com/pulse/when-life-gives-you-pandemics-make-mun-software-mymun/">When life gives you pandemics, make MUN software</a>
@@ -214,9 +233,19 @@
           <li><a href="https://www.linkedin.com/in/brunsj" rel="me">LinkedIn</a></li>
           <li><a href="https://github.com/JonasBruns" rel="me">GitHub</a></li>
         </ul>
+        <a class="btn btn-vcard" href="assets/jonas-bruns.vcf" download="Jonas-Bruns.vcf">Add to contacts ↓</a>
       </div>
     </section>
   </main>
+
+  <div class="scrollcup" aria-hidden="true">
+    <svg viewBox="0 0 36 36">
+      <defs><clipPath id="cupclip"><path d="M8 11 H24 V19 a8 8 0 0 1 -16 0 Z"/></clipPath></defs>
+      <rect class="brew" x="8" y="10" width="16" height="18" clip-path="url(#cupclip)"/>
+      <path class="cup-line" d="M8 11 H24 V19 a8 8 0 0 1 -16 0 Z"/>
+      <path class="cup-line" d="M24 13 h3.5 a3 3 0 0 1 0 6 H24"/>
+    </svg>
+  </div>
 
   <footer class="site-footer">
     <span>© <span id="year">2026</span> Jonas Bruns · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
@@ -225,6 +254,7 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
     // Open external links in a new tab; leave in-page anchors and mailto alone.
     document.querySelectorAll('a[href^="http"]').forEach(function (a) {
       if (a.hostname !== location.hostname) {
@@ -232,6 +262,34 @@
         a.rel = "noopener noreferrer";
       }
     });
+
+    // Latte / Espresso theme toggle.
+    (function () {
+      var root = document.documentElement, btn = document.querySelector('.themetoggle');
+      if (!btn) return;
+      var lbl = btn.querySelector('.tt-label');
+      function sync() { lbl.textContent = root.getAttribute('data-theme') === 'espresso' ? 'Latte' : 'Espresso'; }
+      sync();
+      btn.addEventListener('click', function () {
+        if (root.getAttribute('data-theme') === 'espresso') { root.removeAttribute('data-theme'); try { localStorage.setItem('theme', 'latte'); } catch (e) {} }
+        else { root.setAttribute('data-theme', 'espresso'); try { localStorage.setItem('theme', 'espresso'); } catch (e) {} }
+        sync();
+      });
+    })();
+
+    // Coffee scroll-progress cup.
+    (function () {
+      var cup = document.querySelector('.scrollcup'), d = document.documentElement;
+      if (!cup) return;
+      function upd() { var p = d.scrollTop / ((d.scrollHeight - d.clientHeight) || 1); cup.style.setProperty('--p', Math.max(0, Math.min(1, p)).toFixed(3)); }
+      addEventListener('scroll', upd, { passive: true });
+      addEventListener('resize', upd);
+      upd();
+    })();
+
+    // For the curious who open devtools.
+    console.log('%c☕ Hey, fellow tinkerer.', 'font:600 14px ui-sans-serif,sans-serif;color:#8c2f23');
+    console.log('%cYes — this was vibe-coded with an AI pair. Source → https://github.com/JonasBruns/jonasbruns-site', 'color:#999');
   </script>
 </body>
 </html>

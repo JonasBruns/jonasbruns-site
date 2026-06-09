@@ -340,5 +340,80 @@ a { color: inherit; }
     padding-block: 4.5rem;
   }
   .sec-head { margin-bottom: 0; position: sticky; top: 2rem; align-self: start; }
-  .hero { padding-block: 7rem 5rem; }
+  .hero {
+    display: grid;
+    grid-template-columns: 1.5fr .85fr;
+    gap: 3rem;
+    align-items: center;
+    padding-block: 6.5rem 4.5rem;
+  }
+  .hero-portrait { margin: 0; justify-self: end; }
+  .hero-portrait img { max-width: 330px; }
 }
+
+/* ===========================================================================
+   Delights: espresso theme · portrait · now · toggle · scroll-cup · vCard
+=========================================================================== */
+
+:root[data-theme="espresso"] {
+  --bg: #17120d; --bg-2: #241a10; --ink: #f1e8da; --muted: #a99a84; --faint: #6d6052; --line: #352a1c;
+}
+/* logos: seamless multiply on light; on dark, sit on a small light chip so they stay legible */
+:root[data-theme="espresso"] .affil img {
+  mix-blend-mode: normal; background: #f4eddf; padding: 6px 9px; border-radius: 7px; opacity: 1;
+}
+
+/* hero portrait */
+.hero-portrait { margin: 2.2rem 0 0; }
+.hero-portrait img {
+  width: 100%; max-width: 280px;
+  aspect-ratio: 4 / 5; object-fit: cover;
+  border-radius: .5rem; border: 1px solid var(--line);
+}
+
+/* "now" line */
+.now {
+  display: flex; align-items: center; gap: .55rem; flex-wrap: wrap;
+  margin: 1.7rem 0 0; font-size: .85rem; color: var(--muted);
+}
+.now-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #3aa76d; flex: none;
+  animation: pulse 2.4s ease-out infinite;
+}
+.now-label { text-transform: uppercase; letter-spacing: .12em; font-size: .66rem; color: var(--ink); }
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(58,167,109,.45); }
+  70% { box-shadow: 0 0 0 7px rgba(58,167,109,0); }
+  100% { box-shadow: 0 0 0 0 rgba(58,167,109,0); }
+}
+
+/* theme toggle */
+.mast-right { display: flex; align-items: center; gap: 1.3rem; }
+.themetoggle {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: none; border: 1px solid var(--line); border-radius: 2rem;
+  color: var(--muted); font: inherit; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: .35rem .75rem; cursor: pointer;
+  transition: color .15s ease, border-color .15s ease;
+}
+.themetoggle:hover { color: var(--ink); border-color: var(--ink); }
+.tt-icon { font-size: .9rem; line-height: 1; }
+
+/* writing photo */
+.sec-photo { margin: 0 0 1.8rem; }
+.sec-photo img {
+  height: 220px; width: auto; max-width: 100%;
+  border-radius: .4rem; border: 1px solid var(--line); filter: grayscale(.18);
+}
+
+/* vCard button */
+.btn-vcard { margin-top: 1.5rem; }
+
+/* coffee scroll-progress cup */
+.scrollcup { position: fixed; right: 16px; bottom: 16px; width: 40px; height: 40px; z-index: 5; opacity: .85; pointer-events: none; }
+.scrollcup svg { width: 100%; height: 100%; display: block; }
+.scrollcup .cup-line { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.scrollcup .brew { fill: #7b4b2a; transform: scaleY(var(--p, 0)); transform-origin: 16px 27px; transition: transform .08s linear; }
+@media (max-width: 30rem) { .scrollcup { width: 32px; height: 32px; right: 12px; bottom: 12px; } }
+
+@media (prefers-reduced-motion: reduce) { .now-dot { animation: none; } .scrollcup .brew { transition: none; } }
