@@ -70,13 +70,13 @@ a { color: inherit; }
 }
 .affil img {
   display: block;
-  height: 24px; width: auto;
-  filter: grayscale(1);
-  opacity: .5;
-  mix-blend-mode: multiply;
-  transition: opacity .25s ease, filter .25s ease;
+  height: 30px; width: auto;
+  opacity: .9;
+  mix-blend-mode: multiply;        /* drops the white logo backgrounds into the page */
+  transition: opacity .2s ease, transform .2s ease;
 }
-.affil img:hover { opacity: 1; filter: none; }
+.affil img:hover { opacity: 1; transform: translateY(-1px); }
+@media (min-width: 40rem) { .affil img { height: 34px; } }
 
 /* small label treatment */
 .kicker, .sec-no, .media-tag, .masthead nav a, .wordmark,
