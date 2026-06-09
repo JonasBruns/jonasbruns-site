@@ -122,7 +122,7 @@ a { color: inherit; }
 
 /* ---- hero ----------------------------------------------------------------- */
 
-.hero { padding-block: 6rem 4.5rem; }
+.hero { display: flex; flex-direction: column; padding-block: 3.5rem 3rem; }
 .kicker {
   margin: 0 0 1.8rem;
   font-size: .74rem;
@@ -203,22 +203,18 @@ a { color: inherit; }
 
 /* ---- about gallery -------------------------------------------------------- */
 
-.gallery {
-  margin: 2.4rem 0 0;
-  display: flex; flex-wrap: wrap; gap: .8rem;
-  max-width: none;
-}
-.gallery img {
+.gallery { margin: 2.4rem 0 0; max-width: none; }
+.gallery-track { display: flex; flex-wrap: wrap; gap: .8rem; }
+.gallery-track img {
   height: 168px; width: auto;
   border-radius: .4rem;
   border: 1px solid var(--line);
   filter: grayscale(.18);
   transition: filter .3s ease, transform .3s ease;
 }
-.gallery img:hover { filter: none; transform: translateY(-3px); }
+.gallery-track img:hover { filter: none; transform: translateY(-3px); }
 .gallery figcaption {
-  flex-basis: 100%;
-  margin-top: .7rem;
+  margin-top: .8rem;
   font-size: .76rem;
   letter-spacing: .02em;
   color: var(--muted);
@@ -329,7 +325,47 @@ a { color: inherit; }
 
 @media (min-width: 40rem) {
   .media { grid-template-columns: 1fr 1fr; gap: 1.8rem 1.6rem; }
-  .gallery img { height: 196px; }
+  .gallery-track img { height: 196px; }
+}
+
+/* ---- mobile (≤40rem): swipe strips, tighter rhythm, avatar hero ---------- */
+@media (max-width: 40rem) {
+  html, body { overflow-x: hidden; }     /* safety against the bleed strips */
+
+  .sec { padding-block: 2.6rem; }
+  .sec-head { margin-bottom: 1.1rem; }
+  .affil { padding-block: 1.3rem; }
+  .subhead { margin-top: 2rem; }
+  .hero h1 { max-width: none; }
+
+  /* Talks & media → horizontal swipe lane */
+  .media {
+    grid-auto-flow: column;
+    grid-auto-columns: 78%;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    gap: 1rem;
+    margin-inline: -1.7rem;
+    padding: .2rem 1.7rem;
+    scrollbar-width: none;
+  }
+  .media::-webkit-scrollbar { display: none; }
+  .media-card { scroll-snap-align: start; }
+
+  /* About gallery → horizontal swipe lane (caption stays below) */
+  .gallery-track {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    margin-inline: -1.7rem;
+    padding: .2rem 1.7rem;
+    scrollbar-width: none;
+  }
+  .gallery-track::-webkit-scrollbar { display: none; }
+  .gallery-track img { height: 220px; flex: none; scroll-snap-align: start; }
 }
 
 @media (min-width: 56rem) {
@@ -347,8 +383,11 @@ a { color: inherit; }
     align-items: center;
     padding-block: 6.5rem 4.5rem;
   }
-  .hero-portrait { margin: 0; justify-self: end; }
-  .hero-portrait img { max-width: 330px; }
+  .hero-portrait { order: 0; margin: 0; justify-self: end; }
+  .hero-portrait img {
+    width: 100%; height: auto; max-width: 330px;
+    border-radius: .5rem; aspect-ratio: 4 / 5; object-position: center;
+  }
 }
 
 /* ===========================================================================
@@ -363,12 +402,13 @@ a { color: inherit; }
   mix-blend-mode: normal; background: #f4eddf; padding: 6px 9px; border-radius: 7px; opacity: 1;
 }
 
-/* hero portrait */
-.hero-portrait { margin: 2.2rem 0 0; }
+/* hero portrait — small circular avatar up top on mobile; side portrait on desktop (≥56rem) */
+.hero-portrait { order: -1; margin: 0 0 1.4rem; }
 .hero-portrait img {
-  width: 100%; max-width: 280px;
-  aspect-ratio: 4 / 5; object-fit: cover;
-  border-radius: .5rem; border: 1px solid var(--line);
+  width: 92px; height: 92px;
+  border-radius: 50%;
+  object-fit: cover; object-position: center 14%;
+  border: 1px solid var(--line);
 }
 
 /* "now" line */
@@ -423,6 +463,5 @@ a { color: inherit; }
   .masthead { flex-wrap: wrap; row-gap: .8rem; }
   .mast-right { width: 100%; justify-content: space-between; gap: .8rem; }
   .masthead nav { gap: .8rem .95rem; }
-  .themetoggle .tt-label { display: none; }
-  .themetoggle { padding: .35rem .55rem; }
+  .themetoggle { padding: .35rem .6rem; }
 }
