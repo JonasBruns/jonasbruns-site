@@ -37,7 +37,7 @@
        and the hero portrait (LCP candidate). Cuts font-swap + LCP latency. -->
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/geist-500-latin.woff2" crossorigin />
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/geist-400-latin.woff2" crossorigin />
-  <link rel="preload" as="image" type="image/webp" href="assets/portrait.webp" fetchpriority="high" />
+  <link rel="preload" as="image" type="image/avif" href="assets/portrait.avif" fetchpriority="high" />
 
   <!-- styles.css is inlined below to remove the render-blocking stylesheet request.
        styles.css stays the single source of truth (the sub-pages link it); after
@@ -655,7 +655,7 @@ picture { display: contents; }
       </div>
       <figure class="hero-portrait rise" style="--d:2">
         <picture>
-          <source srcset="assets/portrait.webp" type="image/webp" />
+          <source srcset="assets/portrait.avif" type="image/avif" /><source srcset="assets/portrait.webp" type="image/webp" />
           <img src="assets/portrait.jpg" width="507" height="760" fetchpriority="high" alt="Portrait of Jonas Bruns" />
         </picture>
       </figure>
@@ -690,12 +690,12 @@ picture { display: contents; }
         </p>
         <figure class="gallery">
           <div class="gallery-track">
-            <picture><source srcset="assets/gallery/un-geneva.webp" type="image/webp" /><img loading="lazy" width="640" height="480" src="assets/gallery/un-geneva.jpg" alt="Jonas at the UN in Geneva" /></picture>
-            <picture><source srcset="assets/gallery/gac.webp" type="image/webp" /><img class="m-hide" loading="lazy" width="640" height="480" src="assets/gallery/gac.jpg" alt="The German American Conference at Harvard Kennedy School" /></picture>
-            <picture><source srcset="assets/gallery/hiking.webp" type="image/webp" /><img loading="lazy" width="640" height="480" src="assets/gallery/hiking.jpg" alt="Jonas hiking above the clouds" /></picture>
-            <picture><source srcset="assets/gallery/insead.webp" type="image/webp" /><img class="m-hide" loading="lazy" width="360" height="480" src="assets/gallery/insead.jpg" alt="Jonas at INSEAD" /></picture>
-            <picture><source srcset="assets/gallery/pwc.webp" type="image/webp" /><img class="m-hide" loading="lazy" width="360" height="480" src="assets/gallery/pwc.jpg" alt="Jonas next to a PwC ad" /></picture>
-            <picture><source srcset="assets/gallery/rue-jonas.webp" type="image/webp" /><img loading="lazy" width="360" height="480" src="assets/gallery/rue-jonas.jpg" alt="Rue Jonas street sign in Paris" /></picture>
+            <picture><source srcset="assets/gallery/un-geneva.avif" type="image/avif" /><source srcset="assets/gallery/un-geneva.webp" type="image/webp" /><img loading="lazy" width="640" height="480" src="assets/gallery/un-geneva.jpg" alt="Jonas at the UN in Geneva" /></picture>
+            <picture><source srcset="assets/gallery/gac.avif" type="image/avif" /><source srcset="assets/gallery/gac.webp" type="image/webp" /><img class="m-hide" loading="lazy" width="640" height="480" src="assets/gallery/gac.jpg" alt="The German American Conference at Harvard Kennedy School" /></picture>
+            <picture><source srcset="assets/gallery/hiking.avif" type="image/avif" /><source srcset="assets/gallery/hiking.webp" type="image/webp" /><img loading="lazy" width="640" height="480" src="assets/gallery/hiking.jpg" alt="Jonas hiking above the clouds" /></picture>
+            <picture><source srcset="assets/gallery/insead.avif" type="image/avif" /><source srcset="assets/gallery/insead.webp" type="image/webp" /><img class="m-hide" loading="lazy" width="360" height="480" src="assets/gallery/insead.jpg" alt="Jonas at INSEAD" /></picture>
+            <picture><source srcset="assets/gallery/pwc.avif" type="image/avif" /><source srcset="assets/gallery/pwc.webp" type="image/webp" /><img class="m-hide" loading="lazy" width="360" height="480" src="assets/gallery/pwc.jpg" alt="Jonas next to a PwC ad" /></picture>
+            <picture><source srcset="assets/gallery/rue-jonas.avif" type="image/avif" /><source srcset="assets/gallery/rue-jonas.webp" type="image/webp" /><img loading="lazy" width="360" height="480" src="assets/gallery/rue-jonas.jpg" alt="Rue Jonas street sign in Paris" /></picture>
           </div>
           <figcaption class="cap-full">The UN in Geneva · the German American Conference at Harvard · above the clouds · INSEAD · &ldquo;we build for what&rsquo;s next&rdquo; · Rue Jonas, Paris</figcaption>
           <figcaption class="cap-mobile">The UN in Geneva · above the clouds · Rue Jonas, Paris</figcaption>
@@ -745,7 +745,7 @@ picture { display: contents; }
     <section id="writing" class="sec">
       <div class="sec-head"><span class="sec-no">03</span><h2>Writing</h2></div>
       <div class="sec-body">
-        <figure class="sec-photo"><picture><source srcset="assets/writing.webp" type="image/webp" /><img loading="lazy" width="480" height="640" src="assets/writing.jpg" alt="Jonas writing in a notebook in a Paris park" /></picture></figure>
+        <figure class="sec-photo"><picture><source srcset="assets/writing.avif" type="image/avif" /><source srcset="assets/writing.webp" type="image/webp" /><img loading="lazy" width="480" height="640" src="assets/writing.jpg" alt="Jonas writing in a notebook in a Paris park" /></picture></figure>
         <ul class="articles">
           <li>
             <a href="https://www.linkedin.com/pulse/when-life-gives-you-pandemics-make-mun-software-mymun/">When life gives you pandemics, make MUN software</a>
@@ -774,7 +774,7 @@ picture { display: contents; }
         <ul class="media">
           <li class="media-card">
             <a href="https://www.youtube.com/watch?v=L1Re9FSET7E">
-              <span class="thumb"><picture><source srcset="assets/thumbs/L1Re9FSET7E.webp" type="image/webp" /><img loading="lazy" width="480" height="270" src="assets/thumbs/L1Re9FSET7E.jpg" alt="TEDx talk: Every Student, One MUN" /></picture></span>
+              <span class="thumb"><picture><source srcset="assets/thumbs/L1Re9FSET7E.avif" type="image/avif" /><source srcset="assets/thumbs/L1Re9FSET7E.webp" type="image/webp" /><img loading="lazy" width="480" height="270" src="assets/thumbs/L1Re9FSET7E.jpg" alt="TEDx talk: Every Student, One MUN" /></picture></span>
               <span class="media-tag">TEDx talk</span>
               <span class="media-title">Every Student, One MUN</span>
               <span class="media-src">TEDxUnited Lisbon International School</span>
@@ -782,7 +782,7 @@ picture { display: contents; }
           </li>
           <li class="media-card">
             <a href="https://www.youtube.com/watch?v=wwS8O8JHtIY">
-              <span class="thumb"><picture><source srcset="assets/thumbs/wwS8O8JHtIY.webp" type="image/webp" /><img loading="lazy" width="480" height="270" src="assets/thumbs/wwS8O8JHtIY.jpg" alt="Podcast: How AI Can Turn Model UN Ideas Into Real-World Impact" /></picture></span>
+              <span class="thumb"><picture><source srcset="assets/thumbs/wwS8O8JHtIY.avif" type="image/avif" /><source srcset="assets/thumbs/wwS8O8JHtIY.webp" type="image/webp" /><img loading="lazy" width="480" height="270" src="assets/thumbs/wwS8O8JHtIY.jpg" alt="Podcast: How AI Can Turn Model UN Ideas Into Real-World Impact" /></picture></span>
               <span class="media-tag">Podcast</span>
               <span class="media-title">How AI Can Turn Model UN Ideas Into Real-World Impact</span>
               <span class="media-src">ReModelUN</span>
@@ -790,7 +790,7 @@ picture { display: contents; }
           </li>
           <li class="media-card">
             <a href="https://www.youtube.com/watch?v=0QrZpP2h0T4">
-              <span class="thumb"><picture><source srcset="assets/thumbs/0QrZpP2h0T4.webp" type="image/webp" /><img loading="lazy" width="480" height="270" src="assets/thumbs/0QrZpP2h0T4.jpg" alt="Podcast: MUN Talks Episode One with Jonas & Alex" /></picture></span>
+              <span class="thumb"><picture><source srcset="assets/thumbs/0QrZpP2h0T4.avif" type="image/avif" /><source srcset="assets/thumbs/0QrZpP2h0T4.webp" type="image/webp" /><img loading="lazy" width="480" height="270" src="assets/thumbs/0QrZpP2h0T4.jpg" alt="Podcast: MUN Talks Episode One with Jonas & Alex" /></picture></span>
               <span class="media-tag">Podcast</span>
               <span class="media-title">MUN Talks — Episode One with Jonas &amp; Alex</span>
               <span class="media-src">MUN Talks</span>
