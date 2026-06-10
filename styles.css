@@ -43,6 +43,9 @@ body {
 
 a { color: inherit; }
 
+/* <picture> is a transparent wrapper so existing img layout rules keep working. */
+picture { display: contents; }
+
 .skip-link { position: absolute; left: -999px; }
 .skip-link:focus {
   left: 1rem; top: 1rem; z-index: 20;

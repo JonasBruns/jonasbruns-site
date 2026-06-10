@@ -32,7 +32,585 @@
   </script>
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Preload above-the-fold critical assets: the fonts the H1/body render with,
+       and the hero portrait (LCP candidate). Cuts font-swap + LCP latency. -->
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/geist-500-latin.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/geist-400-latin.woff2" crossorigin />
+  <link rel="preload" as="image" type="image/webp" href="assets/portrait.webp" fetchpriority="high" />
+
+  <!-- styles.css is inlined below to remove the render-blocking stylesheet request.
+       styles.css stays the single source of truth (the sub-pages link it); after
+       editing it, regenerate this block with:  python tools/inline-css.py -->
+  <!-- inline-css:start -->
+  <style>
+/* ---- self-hosted Geist (no third-party font requests) --------------------- */
+@font-face{font-family:"Geist";font-style:normal;font-weight:300;font-display:swap;src:url("assets/fonts/geist-300-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:"Geist";font-style:normal;font-weight:300;font-display:swap;src:url("assets/fonts/geist-300-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Geist";font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/geist-400-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:"Geist";font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/geist-400-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Geist";font-style:normal;font-weight:500;font-display:swap;src:url("assets/fonts/geist-500-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:"Geist";font-style:normal;font-weight:500;font-display:swap;src:url("assets/fonts/geist-500-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:"Geist";font-style:normal;font-weight:600;font-display:swap;src:url("assets/fonts/geist-600-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:"Geist";font-style:normal;font-weight:600;font-display:swap;src:url("assets/fonts/geist-600-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+
+/* ===========================================================================
+   jonasbruns.com — minimal
+   One typeface (Geist), near-monochrome, generous whitespace, hairline rules.
+=========================================================================== */
+
+:root {
+  --bg:    #fbfbfa;
+  --bg-2:  #f2f2f0;
+  --ink:   #15140f;
+  --muted: #6b6861;
+  --faint: #86837b;
+  --line:  #e7e6e1;
+
+  --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --wrap: 64rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; }
+
+/* <picture> is a transparent wrapper so existing img layout rules keep working. */
+picture { display: contents; }
+
+.skip-link { position: absolute; left: -999px; }
+.skip-link:focus {
+  left: 1rem; top: 1rem; z-index: 20;
+  background: var(--ink); color: var(--bg);
+  padding: .55rem .9rem; border-radius: .3rem; font-size: .8rem;
+}
+
+/* ---- shared layout -------------------------------------------------------- */
+
+.masthead, .hero, .affil, .sec, .site-footer {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: 1.7rem;
+}
+
+/* ---- affiliations strip --------------------------------------------------- */
+
+.affil {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem 2.4rem;
+  flex-wrap: wrap;
+  padding-block: 1.8rem;
+  border-top: 1px solid var(--line);
+}
+.affil-label {
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--muted);
+}
+.affil ul {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; align-items: center; gap: 2.2rem; flex-wrap: wrap;
+}
+.affil img {
+  display: block;
+  height: 30px; width: auto;
+  opacity: .9;
+  mix-blend-mode: multiply;        /* drops the white logo backgrounds into the page */
+  transition: opacity .2s ease, transform .2s ease;
+}
+.affil img:hover { opacity: 1; transform: translateY(-1px); }
+@media (min-width: 40rem) { .affil img { height: 34px; } }
+
+/* small label treatment */
+.kicker, .sec-no, .media-tag, .masthead nav a, .wordmark,
+.go, .more-link a, .btn-text, .subhead, .media-src, .site-footer {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 500;
+}
+
+/* ---- masthead ------------------------------------------------------------- */
+
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.6rem;
+  border-bottom: 1px solid var(--line);
+}
+.wordmark {
+  font-size: .8rem;
+  letter-spacing: .16em;
+  text-decoration: none;
+}
+.masthead nav { display: flex; flex-wrap: wrap; gap: 1.4rem; }
+.masthead nav a {
+  font-size: .72rem;
+  text-decoration: none;
+  color: var(--muted);
+  transition: color .15s ease;
+}
+.masthead nav a:hover { color: var(--ink); }
+
+/* ---- hero ----------------------------------------------------------------- */
+
+.hero { display: flex; flex-direction: column; padding-block: 3.5rem 3rem; }
+.kicker {
+  margin: 0 0 1.8rem;
+  font-size: .74rem;
+  color: var(--muted);
+}
+.hero h1 {
+  font-weight: 500;
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  line-height: 1.06;
+  letter-spacing: -.03em;
+  margin: 0;
+  max-width: 19ch;
+}
+.hero h1 .amp { color: var(--faint); }
+.lede {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--muted);
+  max-width: 38rem;
+  margin: 1.8rem 0 0;
+}
+.lede a, .prose a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-underline-offset: 3px;
+}
+.lede a:hover, .prose a:hover { text-decoration-color: var(--ink); }
+
+.hero-actions {
+  margin-top: 2.6rem;
+  display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap;
+}
+.btn {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: .78rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  padding: .8rem 1.5rem;
+  border-radius: 2rem;
+  transition: opacity .15s ease, transform .15s ease;
+}
+.btn:hover { opacity: .85; transform: translateY(-1px); }
+.btn-text {
+  font-size: .76rem;
+  text-decoration: none;
+  color: var(--muted);
+  transition: color .15s ease;
+}
+.btn-text:hover { color: var(--ink); }
+
+/* ---- sections (numbered label rail) -------------------------------------- */
+
+.sec {
+  padding-block: 4rem;
+  border-top: 1px solid var(--line);
+}
+.sec-head { margin-bottom: 1.8rem; }
+.sec-no {
+  display: block;
+  font-size: .72rem;
+  color: var(--muted);
+  margin-bottom: .55rem;
+}
+.sec-head h2 {
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -.02em;
+  margin: 0;
+}
+.sec-body { max-width: 40rem; }
+.prose { margin: 0 0 1.3rem; color: var(--ink); }
+
+/* ---- about gallery -------------------------------------------------------- */
+
+.gallery { margin: 2.4rem 0 0; max-width: none; }
+.gallery-track { display: flex; flex-wrap: wrap; gap: .8rem; }
+.gallery-track img {
+  height: 168px; width: auto;
+  border-radius: .4rem;
+  border: 1px solid var(--line);
+  filter: grayscale(.18);
+  transition: filter .3s ease, transform .3s ease;
+}
+.gallery-track img:hover { filter: none; transform: translateY(-3px); }
+.gallery figcaption {
+  margin-top: .8rem;
+  font-size: .76rem;
+  letter-spacing: .02em;
+  color: var(--muted);
+}
+.cap-mobile { display: none; }   /* shown only on phones (see ≤40rem block) */
+
+/* ---- work list ------------------------------------------------------------ */
+
+.worklist { list-style: none; margin: 0; padding: 0; }
+.work-item { padding: 1.5rem 0; border-top: 1px solid var(--line); }
+.work-item:first-child { padding-top: 0; border-top: 0; }
+.work-item h3 { font-weight: 500; font-size: 1.2rem; letter-spacing: -.01em; margin: 0 0 .4rem; }
+.work-item p { margin: 0 0 .7rem; color: var(--muted); font-size: 1rem; }
+.go, .more-link a {
+  font-size: .74rem;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: .15rem;
+  transition: border-color .15s ease;
+}
+.go:hover, .more-link a:hover { border-color: var(--ink); }
+
+/* ---- writing -------------------------------------------------------------- */
+
+.articles { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.4rem; }
+.articles li { display: grid; gap: .25rem; }
+.articles a {
+  font-weight: 500; font-size: 1.2rem; letter-spacing: -.01em;
+  text-decoration: none; width: fit-content;
+  border-bottom: 1px solid var(--line); padding-bottom: .1rem;
+  transition: border-color .15s ease;
+}
+.articles a:hover { border-color: var(--ink); }
+.article-note { color: var(--muted); font-size: .98rem; }
+
+.subhead { margin: 2.6rem 0 1rem; font-size: .72rem; color: var(--muted); }
+.notes { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.notes li { color: var(--muted); line-height: 1.55; }
+.notes strong { color: var(--ink); font-weight: 500; }
+.more-link { margin: 1.6rem 0 0; }
+
+/* ---- talks & media -------------------------------------------------------- */
+
+.media { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.6rem; }
+.media-card a { display: grid; gap: .45rem; text-decoration: none; color: var(--ink); }
+.thumb {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: .4rem;
+  overflow: hidden;
+  margin-bottom: .35rem;
+  aspect-ratio: 16 / 9;
+}
+.thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(.18);
+  transition: filter .3s ease, transform .4s ease;
+}
+.media-card a:hover .thumb img { filter: none; transform: scale(1.03); }
+.thumb--text {
+  display: grid; place-items: center;
+  background: var(--bg-2);
+  font-weight: 600; font-size: 1.5rem; color: var(--ink);
+  letter-spacing: -.01em;
+}
+.media-tag { font-size: .68rem; color: var(--muted); }
+.media-title { font-weight: 500; font-size: 1.05rem; line-height: 1.3; letter-spacing: -.01em; }
+.media-src { font-size: .7rem; color: var(--muted); }
+
+/* ---- contact -------------------------------------------------------------- */
+
+.links { list-style: none; margin: 1.4rem 0 0; padding: 0; display: grid; gap: .55rem; }
+.links a {
+  font-size: 1.2rem; font-weight: 500; letter-spacing: -.01em;
+  text-decoration: none; width: fit-content;
+  border-bottom: 1px solid var(--line); padding-bottom: .12rem;
+  transition: border-color .15s ease;
+}
+.links a:hover { border-color: var(--ink); }
+
+/* ---- footer --------------------------------------------------------------- */
+
+.site-footer {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: .6rem;
+  padding-block: 2.5rem;
+  border-top: 1px solid var(--line);
+  font-size: .7rem;
+  color: var(--muted);
+}
+.site-footer a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 2px;
+}
+.site-footer a:hover { text-decoration-color: var(--ink); }
+
+/* ---- motion --------------------------------------------------------------- */
+
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.rise { opacity: 0; animation: rise .6s cubic-bezier(.2,.7,.2,1) forwards; animation-delay: calc(var(--d) * 100ms); }
+@media (prefers-reduced-motion: reduce) {
+  .rise { animation: none; opacity: 1; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---- responsive ----------------------------------------------------------- */
+
+@media (min-width: 40rem) {
+  .media { grid-template-columns: 1fr 1fr; gap: 1.8rem 1.6rem; }
+  .gallery-track img { height: 196px; }
+}
+
+/* ---- mobile (≤40rem): swipe strips, tighter rhythm, avatar hero ---------- */
+@media (max-width: 40rem) {
+  html, body { overflow-x: hidden; }     /* safety against the bleed strips */
+
+  .sec { padding-block: 2.6rem; }
+  .sec-head { margin-bottom: 1.1rem; }
+  .affil { padding-block: 1.3rem; }
+  .subhead { margin-top: 2rem; }
+  .hero h1 { max-width: none; }
+
+  /* Talks & media → horizontal swipe lane */
+  .media {
+    grid-auto-flow: column;
+    grid-auto-columns: 78%;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    gap: 1rem;
+    margin-inline: -1.7rem;
+    padding: .2rem 1.7rem;
+    scrollbar-width: none;
+  }
+  .media::-webkit-scrollbar { display: none; }
+  .media-card { scroll-snap-align: start; }
+
+  /* About gallery → horizontal swipe lane (caption stays below) */
+  .gallery-track {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    margin-inline: -1.7rem;
+    padding: .2rem 1.7rem;
+    scrollbar-width: none;
+  }
+  .gallery-track::-webkit-scrollbar { display: none; }
+  .gallery-track img { height: 220px; flex: none; scroll-snap-align: start; }
+  .gallery-track img.m-hide { display: none; }   /* curated 3 on mobile */
+  .cap-full { display: none; }
+  .cap-mobile { display: block; }
+}
+
+@media (min-width: 56rem) {
+  .sec {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 3rem;
+    padding-block: 4.5rem;
+  }
+  .sec-head { margin-bottom: 0; position: sticky; top: 2rem; align-self: start; }
+  .hero {
+    display: grid;
+    grid-template-columns: 1.5fr .85fr;
+    gap: 3rem;
+    align-items: center;
+    padding-block: 6.5rem 4.5rem;
+  }
+  .hero-portrait { order: 0; margin: 0; justify-self: end; }
+  .hero-portrait img {
+    width: 100%; height: auto; max-width: 330px;
+    border-radius: .5rem; aspect-ratio: 4 / 5; object-position: center;
+  }
+}
+
+/* ===========================================================================
+   Delights: espresso theme · portrait · now · toggle · scroll-cup · vCard
+=========================================================================== */
+
+:root[data-theme="espresso"] {
+  --bg: #17120d; --bg-2: #241a10; --ink: #f1e8da; --muted: #a99a84; --faint: #6d6052; --line: #352a1c;
+}
+/* logos: seamless multiply on light; on dark, sit on a small light chip so they stay legible */
+:root[data-theme="espresso"] .affil img {
+  mix-blend-mode: normal; background: #f4eddf; padding: 6px 9px; border-radius: 7px; opacity: 1;
+}
+
+/* hero portrait — small circular avatar up top on mobile; side portrait on desktop (≥56rem) */
+.hero-portrait { order: -1; margin: 0 0 1.4rem; }
+.hero-portrait img {
+  width: 92px; height: 92px;
+  border-radius: 50%;
+  object-fit: cover; object-position: center 14%;
+  border: 1px solid var(--line);
+}
+
+/* "now" line */
+.now {
+  display: flex; align-items: center; gap: .55rem; flex-wrap: wrap;
+  margin: 1.7rem 0 0; font-size: .85rem; color: var(--muted);
+}
+.now-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #3aa76d; flex: none;
+  animation: pulse 2.4s ease-out infinite;
+}
+.now-label { text-transform: uppercase; letter-spacing: .12em; font-size: .66rem; color: var(--ink); }
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(58,167,109,.45); }
+  70% { box-shadow: 0 0 0 7px rgba(58,167,109,0); }
+  100% { box-shadow: 0 0 0 0 rgba(58,167,109,0); }
+}
+
+/* theme toggle */
+.mast-right { display: flex; align-items: center; gap: 1.3rem; }
+.themetoggle {
+  display: inline-flex; align-items: center; gap: .4rem;
+  background: none; border: 1px solid var(--line); border-radius: 2rem;
+  color: var(--muted); font: inherit; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: .35rem .75rem; cursor: pointer;
+  transition: color .15s ease, border-color .15s ease;
+}
+.themetoggle:hover { color: var(--ink); border-color: var(--ink); }
+.tt-icon { font-size: .9rem; line-height: 1; }
+
+/* writing photo */
+.sec-photo { margin: 0 0 1.8rem; }
+.sec-photo img {
+  height: 220px; width: auto; max-width: 100%;
+  border-radius: .4rem; border: 1px solid var(--line); filter: grayscale(.18);
+}
+
+/* vCard button */
+.btn-vcard { margin-top: 1.5rem; }
+
+/* coffee scroll-progress cup */
+.scrollcup { position: fixed; right: 16px; bottom: 16px; width: 40px; height: 40px; z-index: 5; opacity: .85; pointer-events: none; }
+.scrollcup svg { width: 100%; height: 100%; display: block; }
+.scrollcup .cup-line { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.scrollcup .brew { fill: #7b4b2a; transform: scaleY(var(--p, 0)); transform-origin: 16px 27px; transition: transform .08s linear; }
+@media (max-width: 30rem) { .scrollcup { width: 32px; height: 32px; right: 12px; bottom: 12px; } }
+
+@media (prefers-reduced-motion: reduce) { .now-dot { animation: none; } .scrollcup .brew { transition: none; } }
+
+/* tidy the masthead on small screens: wordmark on top, nav + toggle on their own row */
+@media (max-width: 38rem) {
+  .masthead { flex-wrap: wrap; row-gap: .8rem; }
+  .mast-right { width: 100%; justify-content: space-between; gap: .8rem; }
+  .masthead nav { gap: .8rem .95rem; }
+  .themetoggle { padding: .35rem .6rem; }
+}
+
+/* ===========================================================================
+   "How this site was built" — the guide page
+=========================================================================== */
+
+.guide-lede {
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 42rem;
+  margin: 0 0 1rem;
+}
+.guide-lede strong { color: var(--ink); font-weight: 500; }
+
+/* the toolkit list (step 01) */
+.toolkit { list-style: none; margin: 1.4rem 0 0; padding: 0; display: grid; gap: 1.1rem; }
+.toolkit li {
+  display: grid; gap: .15rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--line);
+}
+.toolkit b { font-weight: 500; color: var(--ink); }
+.toolkit span { color: var(--muted); font-size: .97rem; }
+
+/* numbered steps */
+.steps { list-style: none; counter-reset: step; margin: 0; padding: 0; }
+.step { padding: 1.9rem 0; border-top: 1px solid var(--line); }
+.step:first-child { padding-top: 0; border-top: 0; }
+.step h3 {
+  display: flex; gap: .7rem; align-items: baseline;
+  font-weight: 500; font-size: 1.2rem; letter-spacing: -.01em;
+  margin: 0 0 .6rem;
+}
+.step h3::before {
+  counter-increment: step;
+  content: counter(step, decimal-leading-zero);
+  color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums;
+}
+.step p { margin: 0 0 .9rem; color: var(--muted); }
+.step p:last-child { margin-bottom: 0; }
+.step p a {
+  color: var(--ink); text-decoration: underline;
+  text-decoration-color: var(--faint); text-underline-offset: 3px;
+}
+.step p a:hover { text-decoration-color: var(--ink); }
+
+/* a mock "you → AI" prompt box */
+.prompt {
+  margin: .9rem 0;
+  padding: .9rem 1.05rem;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: .5rem;
+}
+.prompt::before {
+  content: "You → AI";
+  display: block;
+  font-size: .6rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: .45rem;
+}
+.prompt p {
+  margin: 0; color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .9rem; line-height: 1.5;
+}
+.prompt p + p { margin-top: .65rem; }
+
+/* closing callout */
+.guide-callout {
+  margin: 2.6rem 0 0;
+  padding: 1.4rem 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: .6rem;
+  background: var(--bg-2);
+}
+.guide-callout p { margin: 0; color: var(--ink); }
+.guide-callout a {
+  color: var(--ink); text-decoration: underline;
+  text-decoration-color: var(--faint); text-underline-offset: 3px;
+}
+.guide-callout a:hover { text-decoration-color: var(--ink); }
+
+/* desktop hero portrait — declared LAST so it overrides the mobile avatar rules */
+@media (min-width: 56rem) {
+  .hero-portrait { order: 0; margin: 0; justify-self: end; }
+  .hero-portrait img {
+    width: 100%; height: auto; max-width: 330px;
+    border-radius: .5rem; aspect-ratio: 4 / 5;
+    object-fit: cover; object-position: center;
+  }
+}
+  </style>
+  <!-- inline-css:end -->
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -76,7 +654,10 @@
         </div>
       </div>
       <figure class="hero-portrait rise" style="--d:2">
-        <img src="assets/portrait.jpg" width="507" height="760" alt="Portrait of Jonas Bruns" />
+        <picture>
+          <source srcset="assets/portrait.webp" type="image/webp" />
+          <img src="assets/portrait.jpg" width="507" height="760" fetchpriority="high" alt="Portrait of Jonas Bruns" />
+        </picture>
       </figure>
     </section>
 
@@ -109,12 +690,12 @@
         </p>
         <figure class="gallery">
           <div class="gallery-track">
-            <img loading="lazy" width="640" height="480" src="assets/gallery/un-geneva.jpg" alt="Jonas at the UN in Geneva" />
-            <img class="m-hide" loading="lazy" width="640" height="480" src="assets/gallery/gac.jpg" alt="The German American Conference at Harvard Kennedy School" />
-            <img loading="lazy" width="640" height="480" src="assets/gallery/hiking.jpg" alt="Jonas hiking above the clouds" />
-            <img class="m-hide" loading="lazy" width="360" height="480" src="assets/gallery/insead.jpg" alt="Jonas at INSEAD" />
-            <img class="m-hide" loading="lazy" width="360" height="480" src="assets/gallery/pwc.jpg" alt="Jonas next to a PwC ad" />
-            <img loading="lazy" width="360" height="480" src="assets/gallery/rue-jonas.jpg" alt="Rue Jonas street sign in Paris" />
+            <picture><source srcset="assets/gallery/un-geneva.webp" type="image/webp" /><img loading="lazy" width="640" height="480" src="assets/gallery/un-geneva.jpg" alt="Jonas at the UN in Geneva" /></picture>
+            <picture><source srcset="assets/gallery/gac.webp" type="image/webp" /><img class="m-hide" loading="lazy" width="640" height="480" src="assets/gallery/gac.jpg" alt="The German American Conference at Harvard Kennedy School" /></picture>
+            <picture><source srcset="assets/gallery/hiking.webp" type="image/webp" /><img loading="lazy" width="640" height="480" src="assets/gallery/hiking.jpg" alt="Jonas hiking above the clouds" /></picture>
+            <picture><source srcset="assets/gallery/insead.webp" type="image/webp" /><img class="m-hide" loading="lazy" width="360" height="480" src="assets/gallery/insead.jpg" alt="Jonas at INSEAD" /></picture>
+            <picture><source srcset="assets/gallery/pwc.webp" type="image/webp" /><img class="m-hide" loading="lazy" width="360" height="480" src="assets/gallery/pwc.jpg" alt="Jonas next to a PwC ad" /></picture>
+            <picture><source srcset="assets/gallery/rue-jonas.webp" type="image/webp" /><img loading="lazy" width="360" height="480" src="assets/gallery/rue-jonas.jpg" alt="Rue Jonas street sign in Paris" /></picture>
           </div>
           <figcaption class="cap-full">The UN in Geneva · the German American Conference at Harvard · above the clouds · INSEAD · &ldquo;we build for what&rsquo;s next&rdquo; · Rue Jonas, Paris</figcaption>
           <figcaption class="cap-mobile">The UN in Geneva · above the clouds · Rue Jonas, Paris</figcaption>
@@ -164,7 +745,7 @@
     <section id="writing" class="sec">
       <div class="sec-head"><span class="sec-no">03</span><h2>Writing</h2></div>
       <div class="sec-body">
-        <figure class="sec-photo"><img loading="lazy" width="480" height="640" src="assets/writing.jpg" alt="Jonas writing in a notebook in a Paris park" /></figure>
+        <figure class="sec-photo"><picture><source srcset="assets/writing.webp" type="image/webp" /><img loading="lazy" width="480" height="640" src="assets/writing.jpg" alt="Jonas writing in a notebook in a Paris park" /></picture></figure>
         <ul class="articles">
           <li>
             <a href="https://www.linkedin.com/pulse/when-life-gives-you-pandemics-make-mun-software-mymun/">When life gives you pandemics, make MUN software</a>
@@ -193,7 +774,7 @@
         <ul class="media">
           <li class="media-card">
             <a href="https://www.youtube.com/watch?v=L1Re9FSET7E">
-              <span class="thumb"><img loading="lazy" width="480" height="270" src="assets/thumbs/L1Re9FSET7E.jpg" alt="TEDx talk: Every Student, One MUN" /></span>
+              <span class="thumb"><picture><source srcset="assets/thumbs/L1Re9FSET7E.webp" type="image/webp" /><img loading="lazy" width="480" height="270" src="assets/thumbs/L1Re9FSET7E.jpg" alt="TEDx talk: Every Student, One MUN" /></picture></span>
               <span class="media-tag">TEDx talk</span>
               <span class="media-title">Every Student, One MUN</span>
               <span class="media-src">TEDxUnited Lisbon International School</span>
@@ -201,7 +782,7 @@
           </li>
           <li class="media-card">
             <a href="https://www.youtube.com/watch?v=wwS8O8JHtIY">
-              <span class="thumb"><img loading="lazy" width="480" height="270" src="assets/thumbs/wwS8O8JHtIY.jpg" alt="Podcast: How AI Can Turn Model UN Ideas Into Real-World Impact" /></span>
+              <span class="thumb"><picture><source srcset="assets/thumbs/wwS8O8JHtIY.webp" type="image/webp" /><img loading="lazy" width="480" height="270" src="assets/thumbs/wwS8O8JHtIY.jpg" alt="Podcast: How AI Can Turn Model UN Ideas Into Real-World Impact" /></picture></span>
               <span class="media-tag">Podcast</span>
               <span class="media-title">How AI Can Turn Model UN Ideas Into Real-World Impact</span>
               <span class="media-src">ReModelUN</span>
@@ -209,7 +790,7 @@
           </li>
           <li class="media-card">
             <a href="https://www.youtube.com/watch?v=0QrZpP2h0T4">
-              <span class="thumb"><img loading="lazy" width="480" height="270" src="assets/thumbs/0QrZpP2h0T4.jpg" alt="Podcast: MUN Talks Episode One with Jonas & Alex" /></span>
+              <span class="thumb"><picture><source srcset="assets/thumbs/0QrZpP2h0T4.webp" type="image/webp" /><img loading="lazy" width="480" height="270" src="assets/thumbs/0QrZpP2h0T4.jpg" alt="Podcast: MUN Talks Episode One with Jonas & Alex" /></picture></span>
               <span class="media-tag">Podcast</span>
               <span class="media-title">MUN Talks — Episode One with Jonas &amp; Alex</span>
               <span class="media-src">MUN Talks</span>
