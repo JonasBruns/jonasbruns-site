@@ -47,7 +47,7 @@
         <a href="#media">Talks</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="themetoggle" type="button" aria-label="Switch colour theme">
+      <button class="themetoggle" type="button" aria-label="Switch to Espresso theme">
         <span class="tt-icon" aria-hidden="true">☕</span><span class="tt-label">Espresso</span>
       </button>
     </div>
@@ -84,9 +84,9 @@
     <section class="affil" aria-label="Currently affiliated with">
       <span class="affil-label">Currently</span>
       <ul>
-        <li><img loading="lazy" src="assets/logos/strategyand.png" alt="Strategy&amp;" /></li>
-        <li><img loading="lazy" src="assets/logos/insead-circle.jpg" alt="INSEAD" /></li>
-        <li><img loading="lazy" src="assets/logos/mymun.svg" alt="mymun" /></li>
+        <li><img loading="lazy" width="240" height="73" src="assets/logos/strategyand.png" alt="Strategy&amp;" /></li>
+        <li><img loading="lazy" width="90" height="90" src="assets/logos/insead-circle.jpg" alt="INSEAD" /></li>
+        <li><img loading="lazy" width="30" height="30" src="assets/logos/mymun.svg" alt="mymun" /></li>
       </ul>
     </section>
 
@@ -109,12 +109,12 @@
         </p>
         <figure class="gallery">
           <div class="gallery-track">
-            <img loading="lazy" src="assets/gallery/un-geneva.jpg" alt="Jonas at the UN in Geneva" />
-            <img class="m-hide" loading="lazy" src="assets/gallery/gac.jpg" alt="The German American Conference at Harvard Kennedy School" />
-            <img loading="lazy" src="assets/gallery/hiking.jpg" alt="Jonas hiking above the clouds" />
-            <img class="m-hide" loading="lazy" src="assets/gallery/insead.jpg" alt="Jonas at INSEAD" />
-            <img class="m-hide" loading="lazy" src="assets/gallery/pwc.jpg" alt="Jonas next to a PwC ad" />
-            <img loading="lazy" src="assets/gallery/rue-jonas.jpg" alt="Rue Jonas street sign in Paris" />
+            <img loading="lazy" width="640" height="480" src="assets/gallery/un-geneva.jpg" alt="Jonas at the UN in Geneva" />
+            <img class="m-hide" loading="lazy" width="640" height="480" src="assets/gallery/gac.jpg" alt="The German American Conference at Harvard Kennedy School" />
+            <img loading="lazy" width="640" height="480" src="assets/gallery/hiking.jpg" alt="Jonas hiking above the clouds" />
+            <img class="m-hide" loading="lazy" width="360" height="480" src="assets/gallery/insead.jpg" alt="Jonas at INSEAD" />
+            <img class="m-hide" loading="lazy" width="360" height="480" src="assets/gallery/pwc.jpg" alt="Jonas next to a PwC ad" />
+            <img loading="lazy" width="360" height="480" src="assets/gallery/rue-jonas.jpg" alt="Rue Jonas street sign in Paris" />
           </div>
           <figcaption class="cap-full">The UN in Geneva · the German American Conference at Harvard · above the clouds · INSEAD · &ldquo;we build for what&rsquo;s next&rdquo; · Rue Jonas, Paris</figcaption>
           <figcaption class="cap-mobile">The UN in Geneva · above the clouds · Rue Jonas, Paris</figcaption>
@@ -164,7 +164,7 @@
     <section id="writing" class="sec">
       <div class="sec-head"><span class="sec-no">03</span><h2>Writing</h2></div>
       <div class="sec-body">
-        <figure class="sec-photo"><img loading="lazy" src="assets/writing.jpg" alt="Jonas writing in a notebook in a Paris park" /></figure>
+        <figure class="sec-photo"><img loading="lazy" width="480" height="640" src="assets/writing.jpg" alt="Jonas writing in a notebook in a Paris park" /></figure>
         <ul class="articles">
           <li>
             <a href="https://www.linkedin.com/pulse/when-life-gives-you-pandemics-make-mun-software-mymun/">When life gives you pandemics, make MUN software</a>
@@ -273,7 +273,11 @@
       var root = document.documentElement, btn = document.querySelector('.themetoggle');
       if (!btn) return;
       var lbl = btn.querySelector('.tt-label');
-      function sync() { lbl.textContent = root.getAttribute('data-theme') === 'espresso' ? 'Latte' : 'Espresso'; }
+      function sync() {
+        var word = root.getAttribute('data-theme') === 'espresso' ? 'Latte' : 'Espresso';
+        lbl.textContent = word;
+        btn.setAttribute('aria-label', 'Switch to ' + word + ' theme');
+      }
       sync();
       btn.addEventListener('click', function () {
         if (root.getAttribute('data-theme') === 'espresso') { root.removeAttribute('data-theme'); try { localStorage.setItem('theme', 'latte'); } catch (e) {} }
@@ -283,13 +287,19 @@
     })();
 
     // Coffee scroll-progress cup.
+    // Cache the layout reads (scrollHeight/clientHeight) and only sample scrollTop
+    // inside rAF, so scrolling never forces a synchronous reflow.
     (function () {
       var cup = document.querySelector('.scrollcup'), d = document.documentElement;
       if (!cup) return;
-      function upd() { var p = d.scrollTop / ((d.scrollHeight - d.clientHeight) || 1); cup.style.setProperty('--p', Math.max(0, Math.min(1, p)).toFixed(3)); }
-      addEventListener('scroll', upd, { passive: true });
-      addEventListener('resize', upd);
-      upd();
+      var max = 1, ticking = false;
+      function measure() { max = (d.scrollHeight - d.clientHeight) || 1; }
+      function paint() { ticking = false; var p = d.scrollTop / max; cup.style.setProperty('--p', Math.max(0, Math.min(1, p)).toFixed(3)); }
+      function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }
+      measure(); paint();
+      addEventListener('scroll', onScroll, { passive: true });
+      addEventListener('resize', function () { measure(); paint(); });
+      addEventListener('load', function () { measure(); paint(); });
     })();
 
     // For the curious who open devtools.
