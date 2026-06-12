@@ -13,7 +13,7 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ fromBase64(secrets.SSH_PRIVATE_KEY) }}
           script: |
             cd /opt/jonasbruns-site
             git pull --ff-only
